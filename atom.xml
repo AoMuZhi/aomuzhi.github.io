@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2020-03-28T14:40:33.984Z</updated>
+  <updated>2020-03-28T15:03:21.253Z</updated>
   <id>/</id>
   
   <author>
@@ -20,14 +20,20 @@
     <title>My First Blog</title>
     <link href="/2020/03/28/My-First-Blog/"/>
     <id>/2020/03/28/My-First-Blog/</id>
-    <published>2020-03-28T14:36:08.000Z</published>
-    <updated>2020-03-28T14:40:33.984Z</updated>
+    <published>2020-03-28T14:36:08.231Z</published>
+    <updated>2020-03-28T15:03:21.253Z</updated>
     
     <summary type="html">
     
-    </summary>
+      
+      
+        
+        
+          &lt;p&gt;今天是我人生中具有历史性的一天，今天我终于搭好了这个博客，今天我辞职了，今天我计划着未来。这将是一个好的开始，我将自动重置，以前的一切清零，不带任何包袱，开启我的未来，并且我会记录下未来“旅途”中的绚烂美景。“路漫漫其修远兮，吾将上下而求索”！&lt;br&gt;author:
+        
+      
     
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    </summary>
     
     
   </entry>
