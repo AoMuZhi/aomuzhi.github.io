@@ -319,7 +319,48 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <p>今天是我人生中具有历史性的一天，今天我终于搭好了这个博客，今天我辞职了，今天我计划着未来。这将是一个好的开始，我将自动重置，以前的一切清零，不带任何包袱，开启我的未来，并且我会记录下未来“旅途”中的绚烂美景。“路漫漫其修远兮，吾将上下而求索”！</p>
+          <h2 id="最快最简单的排序——桶排序"><a href="#最快最简单的排序——桶排序" class="headerlink" title="最快最简单的排序——桶排序"></a>最快最简单的排序——桶排序</h2><pre><code class="yml">#include &lt;stdio.h&gt;
+int main()
+{
+    int book[1001],i,j,t,n;
+    for(i=0;i&lt;=1000;i++)
+        book[i]=0;
+    scanf(&quot;%d&quot;,&amp;n);//输入一个数n，表示接下来有n个数
+    for(i=1;i&lt;=n;i++)//循环读入n个数，并进行桶排序
+    {
+        scanf(&quot;%d&quot;,&amp;t); //把每一个数读到变量t中
+        book[t]++; //进行计数，对编号为t的桶放一个小旗子
+    }
+    for(i=1000;i&gt;=0;i--) //依次判断编号1000~0的桶
+        for(j=1;j&lt;=book[i];j++) //出现了几次就将桶的编号打印几次
+            printf(&quot;%d &quot;,i);
+    getchar();getchar();
+    //这里的getchar();用来暂停程序，以便查看程序输出的内容
+    //也可以用system(&quot;pause&quot;);等来代替
+    return 0;
+}
+</code></pre>
+<h2 id="最快最简单的排序——桶排序-1"><a href="#最快最简单的排序——桶排序-1" class="headerlink" title="最快最简单的排序——桶排序"></a>最快最简单的排序——桶排序</h2><pre><code class="c">#include &lt;stdio.h&gt;
+int main()
+{
+    int book[1001],i,j,t,n;
+    for(i=0;i&lt;=1000;i++)
+        book[i]=0;
+    scanf(&quot;%d&quot;,&amp;n);//输入一个数n，表示接下来有n个数
+    for(i=1;i&lt;=n;i++)//循环读入n个数，并进行桶排序
+    {
+        scanf(&quot;%d&quot;,&amp;t); //把每一个数读到变量t中
+        book[t]++; //进行计数，对编号为t的桶放一个小旗子
+    }
+    for(i=1000;i&gt;=0;i--) //依次判断编号1000~0的桶
+        for(j=1;j&lt;=book[i];j++) //出现了几次就将桶的编号打印几次
+            printf(&quot;%d &quot;,i);
+    getchar();getchar();
+    //这里的getchar();用来暂停程序，以便查看程序输出的内容
+    //也可以用system(&quot;pause&quot;);等来代替
+    return 0;
+}
+</code></pre>
 
         </div>
         <!-- .entry-content -->
