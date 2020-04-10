@@ -289,7 +289,7 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/aogui/source@v1.6/aha1.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6/aha1.png">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/aogui/source@v1.5.6/aha1.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.5.6/aha1.png">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
@@ -319,7 +319,7 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h2 id="最快最简单的排序——桶排序"><a href="#最快最简单的排序——桶排序" class="headerlink" title="最快最简单的排序——桶排序"></a>最快最简单的排序——桶排序</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6/aha1.png" alt="image"></p>
+          <h2 id="最快最简单的排序——桶排序"><a href="#最快最简单的排序——桶排序" class="headerlink" title="最快最简单的排序——桶排序"></a>最快最简单的排序——桶排序</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.5.6/aha1.png" alt="image"></p>
 <pre><code class="c">#include &lt;stdio.h&gt;
 int main()
 {
@@ -342,7 +342,7 @@ int main()
 }
 </code></pre>
 <p>可以输入以下数据进行验证。<br>10<br>8 100 50 22 15 6 1 1000 999 0<br>运行结果是：<br>1000 999 100 50 22 15 8 6 1 0</p>
-<h2 id="邻居好说话——冒泡排序"><a href="#邻居好说话——冒泡排序" class="headerlink" title="邻居好说话——冒泡排序"></a>邻居好说话——冒泡排序</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6/102.png" alt="image"></p>
+<h2 id="邻居好说话——冒泡排序"><a href="#邻居好说话——冒泡排序" class="headerlink" title="邻居好说话——冒泡排序"></a>邻居好说话——冒泡排序</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.5.6/102.png" alt="image"></p>
 <pre><code class="c">#include &lt;stdio.h&gt;
 struct student
 {
@@ -371,6 +371,56 @@ int main()
     return 0;
 }
 </code></pre>
+<p>可以输入以下数据进行验证。<br>5<br>huhu 5<br>haha 3<br>xixi 5<br>hengheng 2<br>gaoshou 8<br>运行结果是：<br>gaoshou<br>huhu<br>xixi<br>haha<br>hengheng</p>
+<h2 id="最常用的排序——快速排序"><a href="#最常用的排序——快速排序" class="headerlink" title="最常用的排序——快速排序"></a>最常用的排序——快速排序</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.5.6/103.png" alt="image"></p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+int a[101],n;//定义全局变量，这两个变量需要在子函数中使用
+void quicksort(int left,int right)
+{
+    int i,j,t,temp;
+    if(left&gt;right)
+        return;
+    temp=a[left]; //temp中存的就是基准数
+    i=left;
+    j=right;
+    while(i!=j)
+    {
+        //顺序很重要，要先从右往左找
+        while(a[j]&gt;=temp &amp;&amp; i&lt;j)
+            j--;
+        //再从左往右找
+        while(a[i]&lt;=temp &amp;&amp; i&lt;j)
+            i++;
+        //交换两个数在数组中的位置
+        if(i&lt;j)//当哨兵i和哨兵j没有相遇时
+        {
+            t=a[i];
+            a[i]=a[j];
+            a[j]=t;
+        }
+    }
+    //最终将基准数归位
+    a[left]=a[i];
+    a[i]=temp;
+    quicksort(left,i-1);//继续处理左边的，这里是一个递归的过程
+    quicksort(i+1,right);//继续处理右边的，这里是一个递归的过程
+}
+int main()
+{
+    int i,j,t;
+    //读入数据
+    scanf(&quot;%d&quot;,&amp;n);
+    for(i=1;i&lt;=n;i++)
+        scanf(&quot;%d&quot;,&amp;a[i]);
+    quicksort(1,n); //快速排序调用
+    //输出排序后的结果
+    for(i=1;i&lt;=n;i++)
+        printf(&quot;%d &quot;,a[i]);
+    getchar();getchar();
+    return 0;
+}
+</code></pre>
+<p>可以输入以下数据进行验证。<br>10<br>6 1 2 7 9 3 4 5 10 8<br>运行结果是：<br>1 2 3 4 5 6 7 8 9 10</p>
 
         </div>
         <!-- .entry-content -->
