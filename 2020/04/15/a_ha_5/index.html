@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">啊哈！算法之栈、队列、链表 | MyBlog</title>
+  <title itemprop="name">啊哈！算法之枚举 | MyBlog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -289,11 +289,11 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/aogui/source@v1.6.2/aha2.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.2/aha2.png">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha5.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha5.png">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      啊哈！算法之栈、队列、链表</h1>
+      啊哈！算法之枚举</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -305,7 +305,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2020-4-13<span class="bull">
+        2020-4-15<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -319,198 +319,73 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h2 id="1-解密-QQ-号——队列"><a href="#1-解密-QQ-号——队列" class="headerlink" title="1.解密 QQ 号——队列"></a>1.解密 QQ 号——队列</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.2/201.png" alt="image"></p>
+          <h2 id="1-图的深度优先遍历"><a href="#1-图的深度优先遍历" class="headerlink" title="1.图的深度优先遍历"></a>1.图的深度优先遍历</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/501.png" alt="image"><br><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/502.png" alt="image"></p>
+<pre><code class="c">/***
+
+</code></pre>
+<h2 id="2-图的广度优先遍历"><a href="#2-图的广度优先遍历" class="headerlink" title="2.图的广度优先遍历"></a>2.图的广度优先遍历</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/503.png" alt="image"></p>
 <pre><code class="c">#include &lt;stdio.h&gt;
 int main()
 {
-    int q[102]={0,6,3,1,7,5,8,9,2,4},head,tail;
-    int i;
-    //初始化队列
+    int i,j,n,m,a,b,cur,book[101]={0},e[101][101];
+    int que[10001],head,tail;
+    scanf(&quot;%d %d&quot;,&amp;n,&amp;m);
+    //初始化二维矩阵
+    for(i=1;i&lt;=n;i++)
+        for(j=1;j&lt;=n;j++)
+            if(i==j)
+                e[i][j]=0;
+            else
+                e[i][j]=9999999;
+
+    //读入顶点之间的边
+    for(i=1;i&lt;=m;i++)
+    {
+        scanf(&quot;%d %d&quot;,&amp;a,&amp;b);
+        e[a][b]=1;
+        e[b][a]=1;
+    }
+
+    //队列初始化
     head=1;
-    tail=10; //队列中已经有9个元素了，tail指向队尾的后一个位置
-    while(head&lt;tail) //当队列不为空的时候执行循环
+    tail=1;
+
+    //从1号顶点出发，将1号顶点加入队列
+    que[tail]=1;
+    tail++;
+    book[1]=1;//标记1号顶点已访问
+
+    //当前队列不为空的时候循环
+    while(head&lt;tail)
     {
-        //打印队首并将队首出队
-        printf(&quot;%d &quot;,q[head]);
-        head++;
-        //先将新队首的数添加到队尾
-        q[tail]=q[head];
-        tail++;
-        //再将队首出队
-        head++;
-    }
-    getchar();getchar();
-    return 0;
-}
-</code></pre>
-<p>最后的输出就是 6 1 5 9 4 7 2 8 3<br>下面这段代码是使用结构体来实现的队列操作:</p>
-<pre><code class="c">#include &lt;stdio.h&gt;
-struct queue
-{
-    int data[100];//队列的主体，用来存储内容
-    int head;//队首
-    int tail;//队尾
-};
-int main()
-{
-    struct queue q;
-    int i;
-    //初始化队列
-    q.head=1;
-    q.tail=1;
-    for(i=1;i&lt;=9;i++)
-    {
-        //依次向队列插入9个数
-        scanf(&quot;%d&quot;,&amp;q.data[q.tail]);
-        q.tail++;
-    }
-    while(q.head&lt;q.tail) //当队列不为空的时候执行循环
-    {
-        //打印队首并将队首出队
-        printf(&quot;%d &quot;,q.data[q.head]);
-        q.head++;
-        //先将新队首的数添加到队尾
-        q.data[q.tail]=q.data[q.head];
-        q.tail++;
-        //再将队首出队
-        q.head++;
-    }
-    getchar();getchar();
-    return 0;
-}
-</code></pre>
-<h2 id="2-解密回文——栈"><a href="#2-解密回文——栈" class="headerlink" title="2.解密回文——栈"></a>2.解密回文——栈</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.2/202.png" alt="image"></p>
-<pre><code class="c">#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-int main()
-{
-    char a[101],s[101];
-    int i,len,mid,next,top;
-    gets(a); //读入一行字符串
-    len=strlen(a); //求字符串的长度
-    mid=len/2-1; //求字符串的中点
-    top=0;//栈的初始化
-    //将mid前的字符依次入栈
-    for(i=0;i&lt;=mid;i++)
-        s[++top]=a[i];
-    //判断字符串的长度是奇数还是偶数，并找出需要进行字符匹配的起始下标
-    if(len%2==0)
-        next=mid+1;
-    else
-        next=mid+2;
-    //开始匹配
-    for(i=next;i&lt;=len-1;i++)
-    {
-        if(a[i]!=s[top])
-            break;
-        top--;
-    }
-    //如果top的值为0，则说明栈内所有的字符都被一一匹配了
-    if(top==0)
-        printf(&quot;YES&quot;);
-    else
-        printf(&quot;NO&quot;);
-    getchar();getchar();
-    return 0;
-}
-</code></pre>
-<p>可以输入以下数据进行验证。<br>ahaha<br>运行结果是：<br>YES</p>
-<h2 id="3-链表"><a href="#3-链表" class="headerlink" title="3.链表"></a>3.链表</h2><p><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.2/203.png" alt="image"></p>
-<pre><code class="c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-//这里创建一个结构体用来表示链表的结点类型
-struct node
-{
-    int data;
-    struct node *next;//下一个结点的类型也是 struct node，所以这个指针的类型也必须是 struct node
-* 类型的指针
-};
-int main()
-{
-    struct node *head,*p,*q,*t;
-    int i,n,a;
-    scanf(&quot;%d&quot;,&amp;n);
-    head = NULL;//头指针初始为空
-    for(i=1;i&lt;=n;i++)//循环读入n个数
-    {
-        scanf(&quot;%d&quot;,&amp;a);
-        //动态申请一个空间，用来存放一个结点，并用临时指针p指向这个结点
-        p=(struct node *)malloc(sizeof(struct node));
-        p-&gt;data=a;//将数据存储到当前结点的data域中
-        p-&gt;next=NULL;//设置当前结点的后继指针指向空，也就是当前结点的下一个结点为空
-        if(head==NULL)
-            head=p;//如果这是第一个创建的结点，则将头指针指向这个结点
-        else
-            q-&gt;next=p;//如果不是第一个创建的结点，则将上一个结点的后继指针指向当前结点
-        q=p;//指针q也指向当前结点
-    }
-    //输出链表中的所有数
-    t=head;
-    while(t!=NULL)
-    {
-        printf(&quot;%d &quot;,t-&gt;data);
-        t=t-&gt;next;//继续下一个结点
-    }
-    getchar();getchar();
-    return 0;
-}
-</code></pre>
-<p>可以输入以下数据进行验证。<br>9<br>2 3 5 8 9 10 18 26 32<br>运行结果是：<br>2 3 5 8 9 10 18 26 32</p>
-<p>malloc 函数：<br>malloc 函数的作用就是从内存中申请分配指定字节大小的内存空间。上面这行代码就申<br>请了 4 个字节。如果你不知道 int 类型是 4 个字节的，还可以使用 sizeof(int)获取<br>int 类型所占用的字节数，如下：<br>malloc(sizeof(int));<br>现在你已经成功地从内存中申请了 4 个字节的空间来准备存放一个整数，可是如何来<br>对这个空间进行操作呢？这里我们就需要用一个指针来指向这个空间，即存储这个空间的<br>首地址。<br>int <em>p;<br>p=(int </em>)malloc(sizeof(int));<br>需要注意，malloc 函数的返回类型是 void <em> 类型。void </em> 表示?确定类型的指针。在 C<br>和 C++中，void * 类型可以强制转换为任何其他类型的指针。上面代码中我们将其强制转化<br>为整型指针，以便告诉计算机这里的 4 个字节作为一个整体用来存放整数。还记得我们之前<br>遗留了一个问题：指针就是用来存储内存地址的，为什么要分不同类型的指针呢？因为指针<br>变量存储的是一个内存空间的首地址（第一个字节的地址），但是这个空间占用了多少个字<br>节，用来存储什么类型的数，则是由指针的类型来标明的。这样系统才知道应该取多少个连<br>续内存作为一个数据。<br><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.2/204.png" alt="image"></p>
-<pre><code class="c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-//这里创建一个结构体用来表示链表的结点类型
-struct node
-{
-    int data;
-    struct node *next;
-};
-int main()
-{
-    struct node *head,*p,*q,*t;
-    int i,n,a;
-    scanf(&quot;%d&quot;,&amp;n);
-    head = NULL;//头指针初始为空
-    for(i=1;i&lt;=n;i++)//循环读入n个数
-    {
-        scanf(&quot;%d&quot;,&amp;a);
-        //动态申请一个空间，用来存放一个结点，并用临时指针p指向这个结点
-        p=(struct node *)malloc(sizeof(struct node));
-        p-&gt;data=a;//将数据存储到当前结点的data域中
-        p-&gt;next=NULL;//设置当前结点的后继指针指向空，也就是当前结点的下一个结点为空
-        if(head==NULL)
-            head=p;//如果这是第一个创建的结点，则将头指针指向这个结点
-        else
-            q-&gt;next=p;//如果不是第一个创建的结点，则将上一个结点的后继指针指向当前结点
-        q=p;//指针q也指向当前结点
-    }
-    scanf(&quot;%d&quot;,&amp;a);//读入待插入的数
-    t=head;//从链表头部开始遍历
-    while(t!=NULL)//当没有到达链表尾部的时候循环
-    {
-        if(t-&gt;next-&gt;data &gt; a)//如果当前结点下一个结点的值大于待插入数，将数插入到中间
+        cur=que[head];//当前正在访问的顶点编号
+        for(i=1;i&lt;=n;i++)//从1~n依次尝试
         {
-            p=(struct node *)malloc(sizeof(struct node));//动态申请一个空间，
-            用来存放新增结点
-            p-&gt;data=a;
-            p-&gt;next=t-&gt;next;//新增结点的后继指针指向当前结点的后继指针所指向的结点
-            t-&gt;next=p;//当前结点的后继指针指向新增结点
-            break;//插入完毕退出循环
+            //判断从顶点cur到顶点i是否有边，及顶点i是否已经访问过
+            if(e[cur][i]==1&amp;&amp;book[i]==0)
+            {
+                //如果从顶点cur到i有边，并且顶点i没有被访问过，则将顶点i入队
+                que[tail]=i;
+                tail++;
+                book[i]=1;//标记顶点i已访问
+            }
+            //如果tail大于n,则表明所有顶点都已经被访问过
+            if(tail&gt;n)
+            {
+                break;
+            }
         }
-        t=t-&gt;next;//继续下一个结点
+        head++;//注意这地方，千万不能忘记当一个顶点扩展结束后，head++,然后才能继续往下扩展
     }
-    //输出链表中的所有数
-    t=head;
-    while(t!=NULL)
-    {
-        printf(&quot;%d &quot;,t-&gt;data);
-        t=t-&gt;next;//继续下一个结点
-    }
+
+    for(i=1;i&lt;tail;i++)
+        printf(&quot;%d &quot;,que[i]);
+
     getchar();getchar();
     return 0;
 }
 </code></pre>
-<p>可以输入以下数据进行验证。<br>9<br>2 3 5 8 9 10 18 26 32<br>6<br>运行结果是：<br>2 3 5 6 8 9 10 18 26 32</p>
+<p>输入验证：<br>5 5<br>1 2<br>1 3<br>1 5<br>2 4<br>3 5<br>运行结果：<br>1 2 3 5 4</p>
 
         </div>
         <!-- .entry-content -->
@@ -539,36 +414,19 @@ int main()
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2020/04/15/a_ha_3/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha3.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha3.png">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                啊哈！算法之枚举</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2020/04/10/a_ha_1/" rel="next">
+            <a href="/2020/04/15/a_ha_4/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6/aha1.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6/aha1.png">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha4.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha4.png">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                啊哈！算法之排序</h3>
+                啊哈！算法之枚举</h3>
                 <hr>
               </div>
             </a>
