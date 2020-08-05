@@ -48,7 +48,7 @@
   /*End of Initial Variables*/
   </script>
   <script type="text/javascript">
-  var bg = "https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/kj1.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/kj2.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/kj3.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/kj4.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj1.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj2.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj3.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj4.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj5.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/about.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/cpu.jpg".split(",");
+  var bg = "https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/kj4.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj1.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj2.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj3.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj4.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/bj5.jpg,https://cdn.jsdelivr.net/gh/aogui/source@v1.6.4/about.jpg".split(",");
   var bgindex = Math.floor(Math.random()*bg.length);
   if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
     alert('朋友，IE浏览器未适配哦~');
@@ -117,13 +117,10 @@
               
             
               
-                <li class="wechat">
-                  <a href="/#">
+                <li>
+                  <a href="/#" target="_blank" class="social-github" title="wechat">
                     <img src="/images/wechat.png">
                   </a>
-                  <div class="wechatInner">
-                    <img src="/images/wechat.jpg">
-                  </div>
                 </li>
               
             
@@ -503,8 +500,8 @@ void ListInsert(Sqlist *L,int n,int e,int *flag){
           <div class="reward-open">赏
             <div class="reward-main">
               <ul class="reward-row">
-                <li class="alipay-code"><img src="/images/donate/AliPayQR.jpg"></li>
-                <li class="wechat-code"><img src="/images/donate/WeChanQR.png"></li>
+                <li class="alipay-code"><img src="null"></li>
+                <li class="wechat-code"><img src="null"></li>
               </ul>
             </div>
           </div>
@@ -524,36 +521,19 @@ void ListInsert(Sqlist *L,int n,int e,int *flag){
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+        
           
-            <div class="post-nepre half previous">
+            <div class="post-nepre full next">
           
-            <a href="/2020/06/20/shujujiegou_1/" rel="prev">
+            <a href="/2020/06/20/shujujiegou_1/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.5/shujujiegou.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.5/shujujiegou.jpg">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                数据结构之线性表</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
-        
-          
-            <div class="post-nepre half next">
-          
-            <a href="/2020/04/15/a_ha_5/" rel="next">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha5.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.3/aha5.png">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                啊哈！算法之枚举</h3>
+                数据结构之线性表</h3>
                 <hr>
               </div>
             </a>
