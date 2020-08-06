@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">My Story | MyBlog</title>
+  <title itemprop="name">数据结构之线性表 | MyBlog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -296,11 +296,11 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/aogui/source@v1.6.1/hope.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.1/hope.jpg">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/aogui/source@v1.6.5/shujujiegou.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.5/shujujiegou.jpg">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      My Story</h1>
+      数据结构之线性表</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -312,7 +312,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2020-8-5<span class="bull">
+        2020-6-20<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -326,7 +326,173 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <p>我提前两天到的上海，第一件事就是租房子，我跟着中介看了好几家，最后选择了下面这个小区的，离公司比较近，并且小区环境还不错，价格也是看的几家中最便宜的了。一套百来平米房子分成四户，共住了六个人，是不是感到很拥挤，还好我住的那一间是客厅改造的，有阳台，外面还有个小院子。也因为有这个院子，我后来被蚊子咬得挺惨。<br><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.6/IMG_20190717_175455.jpg" alt="image"><br>在入职的前一天我去工作的地方转了转，下面这个就是我工作的地方，上海银行的数据处理中心，有趣的是公司对面是一个财神庙，没想到城市里也信这些，哈哈哈<br><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.6/IMG_20190717_175027.jpg" alt="image"><br><img src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.6/IMG_20190717_174455.jpg" alt="image"></p>
+          <h2 id="一-顺序表"><a href="#一-顺序表" class="headerlink" title="一.顺序表"></a>一.顺序表</h2><p>#1.静态分配</p>
+<pre><code class="c">#define Maxsize 100
+
+typedef struct {
+    int data[Maxsize];
+    int length;
+}Sqlist;
+
+int main(){
+    Sqlist L;
+    L.length=0;
+    int n,i=0;
+    scanf(&quot;%d&quot;,&amp;n);
+    while(n!=999){
+        L.data[i]=n;
+        L.length=L.length+1;
+        if(L.length==Maxsize)
+            break;
+        scanf(&quot;%d&quot;,&amp;n);
+        i++;
+    }
+    printf(&quot;输入数据为：&quot;);
+    for(i=0;i&lt;L.length;i++){
+        printf(&quot;%d &quot;,L.data[i]);
+    }
+    printf(&quot;\n顺序表长度为：%d &quot;,L.length);
+    return 0;
+}
+</code></pre>
+<p>#2.动态分配</p>
+<pre><code class="c">#include&lt;stdio.h&gt;
+#define InitSize 5
+
+typedef struct{
+    int *data;
+    int MaxSize;
+    int length;
+}*Seqlist;
+
+int main(){
+    Seqlist L;
+    InitList(L);    //
+    int n,i=0;
+    scanf(&quot;%d&quot;,&amp;n);
+    while(n!=999){
+        L-&gt;data[i]=n;
+        L-&gt;length++;
+        if(L-&gt;length==L-&gt;MaxSize)
+            IncreaseSize(L,5);
+        scanf(&quot;%d&quot;,&amp;n);
+        i++;
+    }
+    printf(&quot;输入数据为：&quot;);
+    for(i=0;i&lt;L-&gt;length;i++){
+        printf(&quot;%d &quot;,L-&gt;data[i]);
+    }
+    printf(&quot;\n顺序表当前最大容量为：%d &quot;,L-&gt;MaxSize);
+    printf(&quot;\n顺序表长度为：%d &quot;,(*L).length);//(*L).length这种用指针引用结构体变量成员的方式等价于L-&gt;length
+    return 0;
+}
+
+void InitList(Seqlist L){
+    L-&gt;data=(int *)malloc(InitSize*sizeof(int));
+    L-&gt;MaxSize=InitSize;
+    L-&gt;length=0;
+}
+
+void IncreaseSize(Seqlist L,int len){
+    int *them=L-&gt;data;
+    L-&gt;data=(int *)malloc((InitSize+len)*sizeof(int));
+    for(int i=0;i&lt;L-&gt;MaxSize;i++){
+        L-&gt;data[i]=them[i];
+    }
+    L-&gt;MaxSize=L-&gt;MaxSize+len;
+    free(them);
+}
+//也可用以下代码实现
+/*
+#include&lt;stdio.h&gt;
+#define InitSize 5
+
+typedef struct{
+    int *data;
+    int MaxSize;
+    int length;
+}Seqlist;
+
+int main(){
+    Seqlist L;
+    InitList(&amp;L);
+    int n,i=0;
+    scanf(&quot;%d&quot;,&amp;n);
+    while(n!=999){
+        L.data[i]=n;
+        L.length++;
+        if(L.length==L.MaxSize)
+            IncreaseSize(&amp;L,5);
+        scanf(&quot;%d&quot;,&amp;n);
+        i++;
+    }
+    printf(&quot;输入数据为：&quot;);
+    for(i=0;i&lt;L.length;i++){
+        printf(&quot;%d &quot;,L.data[i]);
+    }
+    printf(&quot;\n顺序表长度为：%d &quot;,L.length);
+    printf(&quot;顺序表当前最大容量为：%d\n&quot;,L.MaxSize);
+    return 0;
+}
+
+void InitList(Seqlist *L){
+    L-&gt;data=(int *)malloc(InitSize*sizeof(int));
+    L-&gt;MaxSize=InitSize;
+    L-&gt;length=0;
+}
+
+void IncreaseSize(Seqlist *L,int len){
+    int *them=L-&gt;data;
+    L-&gt;data=(int *)malloc((InitSize+len)*sizeof(int));
+    for(int i=0;i&lt;L-&gt;MaxSize;i++){
+        L-&gt;data[i]=them[i];
+    }
+    L-&gt;MaxSize=L-&gt;MaxSize+len;
+    free(them);
+}
+*/
+</code></pre>
+<p>可以输入以下数据进行验证。<br>1<br>2<br>3<br>4<br>5<br>6<br>999<br>输入数据为：1 2 3 4 5 6<br>顺序表当前最大容量为：10<br>顺序表长度为：6</p>
+<p>#3.插入操作</p>
+<pre><code class="c">#define Maxsize 100
+
+typedef struct {
+    int data[Maxsize];
+    int length;
+}Sqlist;
+
+int main(){
+    Sqlist L;
+    for(int i=0;i&lt;10;i++){
+        L.data[i]=i+1;
+    }
+    L.length=9;
+    int flag=0;
+    ListInsert(&amp;L,10,10,&amp;flag);
+    if(flag==1){
+        for(int i=0;i&lt;L.length;i++){
+            printf(&quot;%d &quot;,L.data[i]);
+        }
+        printf(&quot;\n插入成功&quot;);
+    }
+    else
+        printf(&quot;插入失败&quot;);
+}
+void ListInsert(Sqlist *L,int n,int e,int *flag){
+    if(n&gt;L-&gt;length+1||n&lt;1||L-&gt;length&gt;=Maxsize){
+        return 0;
+    }
+    else{
+        for(int i=L-&gt;length;i&gt;n-1;i--){
+            L-&gt;data[i]=L-&gt;data[i-1];
+        }
+        L-&gt;data[n-1]=e;
+        L-&gt;length++;
+        (*flag)++;
+        return 0;
+    }
+}
+</code></pre>
 
         </div>
         <!-- .entry-content -->
@@ -355,19 +521,36 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-        
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half previous">
           
-            <a href="/2020/08/05/My-Story-02/" rel="next">
+            <a href="/2020/08/05/My-Story-02/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.1/hope.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.1/hope.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                My Story</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/06/20/shujujiegou_1/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.5/shujujiegou.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/aogui/source@v1.6.5/shujujiegou.jpg">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                My Story</h3>
+                数据结构之线性表</h3>
                 <hr>
               </div>
             </a>
@@ -400,7 +583,7 @@
           </div>
         </div>
         <hr>
-        <p><i class="iconfont icon-write"></i>一个热爱生活的人</p>
+        <p><i class="iconfont icon-write"></i>一个有梦想的人</p>
       </section>
     </main><!-- #main -->
   </div><!-- #primary -->

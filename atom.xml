@@ -45,9 +45,37 @@
   </entry>
   
   <entry>
+    <title>My Story</title>
+    <link href="/2020/08/05/My-Story-02/"/>
+    <id>/2020/08/05/My-Story-02/</id>
+    <published>2020-08-05T15:20:08.000Z</published>
+    <updated>2020-08-06T15:22:28.734Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;见字如晤&lt;br&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/aogui/source@v1.6.7/20200806231658.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="生活" scheme="/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="生活" scheme="/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="故事" scheme="/tags/%E6%95%85%E4%BA%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数据结构之线性表</title>
-    <link href="/2020/06/20/newpapername/"/>
-    <id>/2020/06/20/newpapername/</id>
+    <link href="/2020/06/20/shujujiegou_2/"/>
+    <id>/2020/06/20/shujujiegou_2/</id>
     <published>2020-06-20T06:12:40.000Z</published>
     <updated>2020-06-20T12:41:37.192Z</updated>
     
